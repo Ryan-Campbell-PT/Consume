@@ -1,5 +1,5 @@
 import json
-
+import requests
 
 nutritionixDomain = "https://trackapi.nutritionix.com"
 nutritionixEndpointNaturalNutrients = "/v2/natural/nutrients"
@@ -11,10 +11,13 @@ def getHeaders():
 
 def getNutritionInfo(naturalLanguageString):
     nutritionResponseJson = makeNutritionixRequest(naturalLanguageString)
-    return json.loads(nutritionResponseJson)
+    #print(nutritionResponseJson)
+    #return json.loads(f'{nutritionResponseJson}')
+    return nutritionResponseJson
 
 def makeNutritionixRequest(naturalLanguageString):
-    queryJson = {"query": naturalLanguageString} #this may have to be toString()ed
+    #queryJson = {"query": f'{naturalLanguageString}'} #this may have to be toString()ed
+    queryJson = {"query": naturalLanguageString}
     try:
         request = requests.post(nutritionInformationEndpoint,
                                  json=queryJson,
