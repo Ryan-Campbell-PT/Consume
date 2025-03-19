@@ -1,20 +1,20 @@
 import json
 from nutritionixApiWork import getNutritionInfo
-from nutritionixApiDataManipulation import manipulate
+from nutritionixApiWork import getDailyNutritionRecord
 
 def main():
-    # get from text (json) file, containing date and food associated 
-    naturalLanguageString = "3 large eggs, 2 baked chicken thighs, 1 head of broccoli"    
     dailyNutritionInfo = json.load(open('DailyNutrition.json'))
     
-    jsonObj = json.load(open('output.json'))
-    manipulate(jsonObj)
+    # jsonObj = json.load(open('output.json'))
+    # manipulate(jsonObj)
 
     for day in dailyNutritionInfo['Daily Nutrition Info']:
         date = day['Date']
-        food = day['Food']
+        foodString = day['Food']
 
-        nutInfo = getNutritionInfo(food)
+        dailyRecord = getDailyNutritionRecord(date, foodString )
+        print(dailyRecord)
+        # nutInfo = getNutritionInfo(food)
         # write to db using date, string, and all nutrition info
 
     # nutInfo = getNutritionInfo(naturalLanguageString)

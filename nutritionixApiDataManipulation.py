@@ -1,9 +1,12 @@
 import json
-from NutritionInfoClass import NutritionInfo
+from IndividualNutritionInfoClass import IndividualNutritionInfo
+from DailyNutritionRecordClass import DailyNutritionRecord
 
-def manipulate(jsonDictDump):
-    for foods in jsonDictDump['foods']:
-        nutInfo = NutritionInfo(
+
+def makeDailyNutritionRecord(date, foodString, nutritionResponseJson):
+    ret = DailyNutritionRecord(date=date, foodString=foodString)
+    for foods in nutritionResponseJson['foods']:
+        nutInfo = IndividualNutritionInfo(
             foods['food_name'],
             foods['serving_qty'],
             foods['nf_calories'],
@@ -15,3 +18,6 @@ def manipulate(jsonDictDump):
             foods['nf_sugars'],
             foods['nf_protein']
         )
+        ret.addToNutritionInfo(nutInfo)
+    
+    return ret
