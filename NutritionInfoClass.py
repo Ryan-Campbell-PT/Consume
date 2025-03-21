@@ -1,6 +1,5 @@
 # This class represents the individual records for the food returned by the api
-class IndividualNutritionInfo:
-    # foodName: str
+class NutritionInfo:
     # servingSize: int
     # calories: int
     # fat: int
@@ -12,7 +11,7 @@ class IndividualNutritionInfo:
     # protein: int
 
     def addAndReturn(self, nutritionInfoObj):
-        ret = IndividualNutritionInfo(
+        ret = NutritionInfo(
             self.calories + nutritionInfoObj.calories,
             self.fat + nutritionInfoObj.fat,
             self.cholesterol + nutritionInfoObj.cholesterol,
@@ -36,7 +35,6 @@ class IndividualNutritionInfo:
         #return self
     
     def __init__(self,
-                 foodName='',
                  servingSize=0,
                  calories=0,
                  fat=0,
@@ -47,21 +45,19 @@ class IndividualNutritionInfo:
                  sugar=0,
                  protein=0
                  ):
-        self.foodName = foodName
-        self.servingSize = servingSize
-        self.calories = calories
-        self.fat = fat
-        self.cholesterol = cholesterol
-        self.sodium = sodium
-        self.carbs = carbs
-        self.fiber = fiber
-        self.sugar = sugar
-        self.protein = protein
+        self.servingSize = round(servingSize)
+        self.calories = round(calories)
+        self.fat = round(fat)
+        self.cholesterol = round(cholesterol)
+        self.sodium = round(sodium)
+        self.carbs = round(carbs)
+        self.fiber = round(fiber)
+        self.sugar = round(sugar)
+        self.protein = round(protein)
 
     def __str__(self):
         return (
             f"""
-                Food: {self.foodName}
                 Serving Size: {self.servingSize}
                 Calories: {self.calories}
                 Fat: {self.fat}

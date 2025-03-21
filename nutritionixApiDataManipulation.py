@@ -1,6 +1,6 @@
 import json
-from IndividualNutritionInfoClass import IndividualNutritionInfo
-from DailyNutritionRecordClass import DailyNutritionRecord
+from NutritionInfoClass import IndividualNutritionInfo
+from NutritionRecordClass import DailyNutritionRecord
 
 
 def makeDailyNutritionRecord(date, foodString, nutritionResponseJson):

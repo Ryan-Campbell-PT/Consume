@@ -9,6 +9,18 @@
             "Food": "1 pound ground turkey, 1 banana, 1 can of coke, 1 baked potato"
         }
 
+    ],
+    "Custom Recipes" : [
+        {
+            "Name": "",
+            "Alternate Names": "",
+            "Recipe Ingredients": "NOT MANDATORY",
+            "Nutrition": 
+            {
+                "serving_size": 1,
+                "ALL THE NUTRITION INFO": ""
+            }
+        }
     ]
 
 }

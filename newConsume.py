@@ -12,11 +12,13 @@ def main():
         date = day['Date']
         foodString = day['Food']
 
-        dailyRecord = getDailyNutritionRecord(date, foodString )
+        dailyRecord = getDailyNutritionRecord(date, foodString) 
         print(dailyRecord)
         # nutInfo = getNutritionInfo(food)
         # write to db using date, string, and all nutrition info
 
+    for customRecipes in dailyNutritionInfo['Custom Recipes']:
+        break
     # nutInfo = getNutritionInfo(naturalLanguageString)
     # with open('output.json', 'a') as f:
     #     print(json.dumps(nutInfo, indent=4), file=f)

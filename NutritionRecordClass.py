@@ -1,4 +1,5 @@
-from IndividualNutritionInfoClass import IndividualNutritionInfo
+from NutritionInfoClass import NutritionInfo
+import math
 
 # This class represents the total nutrition info for the day
 # representing all the expected info placed into the Daily.db
@@ -10,11 +11,14 @@ class DailyNutritionRecord:
     def __init__(self, date, foodString):
         self.date = date
         self.totalFoodString = foodString
-        self.totalNutritionInfo = IndividualNutritionInfo()
-        
+        self.totalNutritionInfo = NutritionInfo()
 
     def __str__(self):
-        return (f"Date: {self.date}, Food String: {self.totalFoodString}")
+        return (f"""Date: {self.date}
+                    Food String: {self.totalFoodString}
+                    {self.totalNutritionInfo}
+                    """
+                )
     
     def getTotalNutritionInfo(self):
         # ret = NutritionInfo
@@ -29,3 +33,7 @@ class DailyNutritionRecord:
         # else:
         #     self.nutritionInfo.append(nutritionInfo)
         self.totalNutritionInfo.addToSelf(nutritionInfoObj=nutritionInfo)
+
+class WeeklyNutritionRecord:
+    def __init__(self):
+        pass
