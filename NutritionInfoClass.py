@@ -1,8 +1,8 @@
-# This class represents the individual records for the food returned by the api
+# This class represents any nutrition info being stored
 class NutritionInfo:
-    # servingSize: int
     # calories: int
-    # fat: int
+    # totalFat: int
+    # saturatedFat: int
     # cholesterol: int
     # sodium: int
     # carbs: int
@@ -13,7 +13,8 @@ class NutritionInfo:
     def addAndReturn(self, nutritionInfoObj):
         ret = NutritionInfo(
             self.calories + nutritionInfoObj.calories,
-            self.fat + nutritionInfoObj.fat,
+            self.totalFat + nutritionInfoObj.totalFat,
+            self.saturatedFat + nutritionInfoObj.saturatedFat,
             self.cholesterol + nutritionInfoObj.cholesterol,
             self.sodium + nutritionInfoObj.sodium,
             self.carbs + nutritionInfoObj.carbs,
@@ -25,19 +26,19 @@ class NutritionInfo:
 
     def addToSelf(self, nutritionInfoObj):
         self.calories += nutritionInfoObj.calories
-        self.fat += nutritionInfoObj.fat
+        self.totalFat += nutritionInfoObj.totalFat
+        self.saturatedFat += nutritionInfoObj.saturatedFat
         self.cholesterol += nutritionInfoObj.cholesterol
         self.sodium += nutritionInfoObj.sodium
         self.carbs += nutritionInfoObj.carbs
         self.fiber += nutritionInfoObj.fiber
         self.sugar += nutritionInfoObj.sugar
         self.protein += nutritionInfoObj.protein
-        #return self
     
     def __init__(self,
-                 servingSize=0,
                  calories=0,
-                 fat=0,
+                 totalFat=0,
+                 saturatedFat=0,
                  cholesterol=0,
                  sodium=0,
                  carbs=0,
@@ -45,9 +46,9 @@ class NutritionInfo:
                  sugar=0,
                  protein=0
                  ):
-        self.servingSize = round(servingSize)
         self.calories = round(calories)
-        self.fat = round(fat)
+        self.totalFat = round(totalFat)
+        self.saturatedFat = round(saturatedFat)
         self.cholesterol = round(cholesterol)
         self.sodium = round(sodium)
         self.carbs = round(carbs)
@@ -58,9 +59,9 @@ class NutritionInfo:
     def __str__(self):
         return (
             f"""
-                Serving Size: {self.servingSize}
                 Calories: {self.calories}
-                Fat: {self.fat}
+                Total Fat: {self.totalFat}
+                Saturated Fat: {self.saturatedFat}
                 Cholesterol: {self.cholesterol}
                 Sodium: {self.sodium}
                 Carbs: {self.carbs}

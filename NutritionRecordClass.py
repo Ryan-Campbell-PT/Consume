@@ -16,8 +16,7 @@ class DailyNutritionRecord:
     def __str__(self):
         return (f"""Date: {self.date}
                     Food String: {self.totalFoodString}
-                    {self.totalNutritionInfo}
-                    """
+                    {self.totalNutritionInfo}"""
                 )
     
     def getTotalNutritionInfo(self):
@@ -32,7 +31,7 @@ class DailyNutritionRecord:
         #     self.nutritionInfo = []
         # else:
         #     self.nutritionInfo.append(nutritionInfo)
-        self.totalNutritionInfo.addToSelf(nutritionInfoObj=nutritionInfo)
+        self.totalNutritionInfo.addToSelf(nutritionInfo)
 
 class WeeklyNutritionRecord:
     def __init__(self):

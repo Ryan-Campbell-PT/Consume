@@ -1,16 +1,17 @@
 import json
 import requests
 from nutritionixApiDataManipulation import makeDailyNutritionRecord
+from NutritionRecordClass import DailyNutritionRecord
 
-nutritionixDomain = "https://trackapi.nutritionix.com"
-nutritionixEndpointNaturalNutrients = "/v2/natural/nutrients"
-nutritionInformationEndpoint = nutritionixDomain + nutritionixEndpointNaturalNutrients
+with open('nutritionixAPI.json') as f:
+    nutritionix_data = json.load(f)
+
+nutritionInformationEndpoint = nutritionix_data["Domain"] + nutritionix_data["NaturalLanguageEndpoint"]
 
 def getHeaders():
-    data = json.load(open('nutritionixAPI.json'))
-    return data
+    return nutritionix_data["Headers"]
 
-def getDailyNutritionRecord(date, naturalLanguageString):
+def getDailyNutritionRecord(date, naturalLanguageString) -> DailyNutritionRecord:
     nutritionResponseJson = makeNutritionixRequest(naturalLanguageString)
     return makeDailyNutritionRecord(date, naturalLanguageString, nutritionResponseJson)
 
@@ -20,6 +21,9 @@ def getNutritionInfo(naturalLanguageString):
     #return json.loads(f'{nutritionResponseJson}')
     return nutritionResponseJson
 
+def handleErrors(request):
+    return
+
 def makeNutritionixRequest(naturalLanguageString):
     #queryJson = {"query": f'{naturalLanguageString}'} #this may have to be toString()ed
     queryJson = {"query": naturalLanguageString}
@@ -28,9 +32,11 @@ def makeNutritionixRequest(naturalLanguageString):
                                  json=queryJson,
                                  headers=getHeaders()
                                 )
+        
         if(request.status_code == 200):
             return request.json()
-    
+        else:
+            handleErrors(request)
     except:
         return request.response()
     return

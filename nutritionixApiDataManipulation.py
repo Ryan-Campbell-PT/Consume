@@ -1,16 +1,15 @@
 import json
-from NutritionInfoClass import IndividualNutritionInfo
+from NutritionInfoClass import NutritionInfo
 from NutritionRecordClass import DailyNutritionRecord
 
 
-def makeDailyNutritionRecord(date, foodString, nutritionResponseJson):
+def makeDailyNutritionRecord(date, foodString, nutritionResponseJson) -> DailyNutritionRecord:
     ret = DailyNutritionRecord(date=date, foodString=foodString)
     for foods in nutritionResponseJson['foods']:
-        nutInfo = IndividualNutritionInfo(
-            foods['food_name'],
-            foods['serving_qty'],
+        nutInfo = NutritionInfo(
             foods['nf_calories'],
             foods['nf_total_fat'],
+            foods['nf_saturated_fat'],
             foods['nf_cholesterol'],
             foods['nf_sodium'],
             foods['nf_total_carbohydrate'],
