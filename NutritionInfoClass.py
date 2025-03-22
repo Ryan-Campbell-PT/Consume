@@ -10,6 +10,12 @@ class NutritionInfo:
     # sugar: int
     # protein: int
 
+    @staticmethod
+    def getNutritionInfoColumns():
+        attributes = vars(NutritionInfo())
+        strBoi = ',\n    '.join(f'{attr} INTEGER' for attr in attributes)
+        return strBoi
+
     def addAndReturn(self, nutritionInfoObj):
         ret = NutritionInfo(
             self.calories + nutritionInfoObj.calories,

@@ -1,6 +1,7 @@
 # Personal edits
 .obsidian
 *.db
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

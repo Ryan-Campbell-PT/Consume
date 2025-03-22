@@ -10,24 +10,41 @@ def executeDbCommand(dbCommand: str) -> bool:
         return True
     return False
 
-def createTable():
-    tableStr = """  CREATE TABLE IF NOT EXISTS Daily(
-                        Date VARCHAR(32),
-                        FoodEaten VARCHAR(512),
-                        Calories INTEGER,
-                        Total Fat INTEGER,
-                        Saturated Fat INTEGER,
-                        Cholesterol INTEGER,
-                        Sodium INTEGER,
-                        Carbs INTEGER,
-                        Fiber INTEGER,
-                        Sugar INTEGER,
-                        Protein INTEGER
-                   )"""
-    
-    executeDbCommand(tableStr)
+def createTables():
+    from NutritionInfoClass import NutritionInfo
+    # nutritionInfoStr = """
+    #     Calories INTEGER,
+    #     Total Fat INTEGER,
+    #     Saturated Fat INTEGER,
+    #     Cholesterol INTEGER,
+    #     Sodium INTEGER,
+    #     Carbs INTEGER,
+    #     Fiber INTEGER,
+    #     Sugar INTEGER,
+    #     Protein INTEGER
+    # """
 
-createTable()
+    nutritionInfoStr = NutritionInfo.getNutritionInfoColumns()
+
+    dailyTableStr = f"""
+        CREATE TABLE IF NOT EXISTS Daily(
+            Date VARCHAR(32),
+            FoodEaten VARCHAR(512),
+            {nutritionInfoStr}
+        )"""
+    
+    customObjsTableStr = f"""
+        CREATE TABLE IF NOT EXISTS CustomRecipes(
+            Name VARCHAR(50),
+            Alternate Names VARCHAR(512),
+            Serving Size INTEGER,
+            {nutritionInfoStr}
+        )"""
+    
+    executeDbCommand(dailyTableStr)
+    executeDbCommand(customObjsTableStr)
+
+createTables()
 
 def writeDailyNutrition(dailyNutritionRecord: DailyNutritionRecord):
     insertStr = f"""
