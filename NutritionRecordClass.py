@@ -1,5 +1,6 @@
 from NutritionInfoClass import NutritionInfo
 import math
+import sqlite3
 
 # This class represents the total nutrition info for the day
 # representing all the expected info placed into the Daily.db
@@ -12,6 +13,12 @@ class DailyNutritionRecord:
         self.date = date
         self.totalFoodString = foodString
         self.totalNutritionInfo = NutritionInfo()
+
+    def __init__(self, dbData: sqlite3.Row):
+        self.date = dbData['Date']
+        self.totalFoodString = dbData['foodEaten']
+        self.totalNutritionInfo = NutritionInfo()
+        self.totalNutritionInfo.setDbRowData(dbData)
 
     def __str__(self):
         return (f"""Date: {self.date}

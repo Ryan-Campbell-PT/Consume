@@ -10,6 +10,13 @@ def executeDbCommand(dbCommand: str) -> bool:
         return True
     return False
 
+def executeSelectCommand(dbCommand: str):
+    with sqlite3.connect("foodDb.db") as conn:
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute(dbCommand)
+        return cursor.fetchall()
+    
 def createTables():
     from NutritionInfoClass import NutritionInfo
     # nutritionInfoStr = """
@@ -65,3 +72,24 @@ def writeDailyNutrition(dailyNutritionRecord: DailyNutritionRecord):
     """
 
     return executeDbCommand(insertStr)
+
+def getDailyRecord(date: str) -> DailyNutritionRecord:
+    selectStr = f"""
+        SELECT * FROM Daily WHERE Date = '{date}'
+    """
+
+    selectData = executeSelectCommand(selectStr)
+    # for item in selectData:
+    d = selectData[0]
+    return DailyNutritionRecord(d)
+
+
+    # calories: int
+    # totalFat: int
+    # saturatedFat: int
+    # cholesterol: int
+    # sodium: int
+    # carbs: int
+    # fiber: int
+    # sugar: int
+    # protein: int

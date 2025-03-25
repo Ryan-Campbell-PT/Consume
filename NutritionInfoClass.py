@@ -1,3 +1,5 @@
+import sqlite3
+
 # This class represents any nutrition info being stored
 class NutritionInfo:
     # calories: int
@@ -61,6 +63,18 @@ class NutritionInfo:
         self.fiber = round(fiber)
         self.sugar = round(sugar)
         self.protein = round(protein)
+
+    def setDbRowData(self, dbData: sqlite3.Row):
+        self.calories = round(dbData['calories'])
+        self.totalFat = round(dbData['totalFat'])
+        self.saturatedFat = round(dbData['saturatedFat'])
+        self.cholesterol = round(dbData['cholesterol'])
+        self.sodium = round(dbData['sodium'])
+        self.carbs = round(dbData['carbs'])
+        self.fiber = round(dbData['fiber'])
+        self.sugar = round(dbData['sugar'])
+        self.protein = round(dbData['protein'])
+
 
     def __str__(self):
         return (
